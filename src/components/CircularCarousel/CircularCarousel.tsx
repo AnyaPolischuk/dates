@@ -7,6 +7,7 @@ import styles from './CircularCarousel.module.scss';
 
 export const CircularCarousel = () => {
   const [activeItem, setActiveItem] = useState<number>(0);
+  const activeElementRef = useRef<number>(0);
 
   const svgRef = useRef<SVGSVGElement>(null);
   const allItemsRef = useRef<null | HTMLDivElement[]>(null);
@@ -75,7 +76,7 @@ export const CircularCarousel = () => {
 
   function itemClickHandler(index: number) {
     let current = trackerRef.current!.item;
-    let activeItem = index;
+    activeElementRef.current = index;
 
     if (index === current) {
       return;
@@ -83,7 +84,7 @@ export const CircularCarousel = () => {
 
     let diff = current! - index;
 
-    setActiveItem(activeItem);
+    setActiveItem(activeElementRef.current);
 
     if (Math.abs(diff) < itemsLengthRef.current / 2) {
         moveWheel(diff * itemStepRef.current);
@@ -111,6 +112,26 @@ export const CircularCarousel = () => {
       }
     });
   }
+
+  function nextClickHandler(amount: number): void {
+    moveWheel(amount);
+    if (activeElementRef.current === itemsLengthRef.current - 1) {
+      activeElementRef.current = 0;
+    } else {
+      activeElementRef.current += 1;
+    }
+    setActiveItem(activeElementRef.current);
+  }
+
+  function prevClickHandler(amount: number): void {
+    moveWheel(amount);
+    if (activeElementRef.current === 0) {
+      activeElementRef.current = itemsLengthRef.current - 1;
+    } else {
+      activeElementRef.current -= 1;
+    }
+    setActiveItem(activeElementRef.current);
+  }
   
   return (
     <>
@@ -120,7 +141,7 @@ export const CircularCarousel = () => {
             <div
               onClick={() => itemClickHandler(index)}
               key={item.id}
-              className={`${styles.item} ${activeItem === index ? 'active' : ''} elem`}
+              className={`${activeItem === index ? styles.active : styles.item} elem`}
             >
               {item.id}
             </div>
@@ -132,8 +153,8 @@ export const CircularCarousel = () => {
         <div className={styles.start}>&#8592; Active</div>
     </div>
     <div className={styles.container} style={{ textAlign: 'center' }}>
-      <button onClick={() => moveWheel(-itemStepRef.current)} className={styles.prev}>Prev</button>
-      <button onClick={() => moveWheel(itemStepRef.current)} className={styles.next}>Next</button>
+      <button onClick={() => prevClickHandler(itemStepRef.current)} className={styles.prev}>Prev</button>
+      <button onClick={() => nextClickHandler(-itemStepRef.current)} className={styles.next}>Next</button>
     </div>
     </>
   )
