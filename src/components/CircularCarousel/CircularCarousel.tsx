@@ -7,6 +7,7 @@ import styles from './CircularCarousel.module.scss';
 
 export const CircularCarousel = () => {
   const [activeItem, setActiveItem] = useState<number>(0);
+  const [activeTitle, setActiveTitle] = useState<string>(data[0].title);
   const activeElementRef = useRef<number>(0);
 
   const svgRef = useRef<SVGSVGElement>(null);
@@ -85,6 +86,7 @@ export const CircularCarousel = () => {
     let diff = current! - index;
 
     setActiveItem(activeElementRef.current);
+    setActiveTitle(data[activeElementRef.current].title);
 
     if (Math.abs(diff) < itemsLengthRef.current / 2) {
         moveWheel(diff * itemStepRef.current);
@@ -115,22 +117,26 @@ export const CircularCarousel = () => {
 
   function nextClickHandler(amount: number): void {
     moveWheel(amount);
+    
     if (activeElementRef.current === itemsLengthRef.current - 1) {
       activeElementRef.current = 0;
     } else {
       activeElementRef.current += 1;
     }
     setActiveItem(activeElementRef.current);
+    setActiveTitle(data[activeElementRef.current].title);
   }
 
   function prevClickHandler(amount: number): void {
     moveWheel(amount);
+
     if (activeElementRef.current === 0) {
       activeElementRef.current = itemsLengthRef.current - 1;
     } else {
       activeElementRef.current -= 1;
     }
     setActiveItem(activeElementRef.current);
+    setActiveTitle(data[activeElementRef.current].title);
   }
   
   return (
@@ -150,12 +156,23 @@ export const CircularCarousel = () => {
             <circle id='holder' className={styles.st0} cx="151" cy="151" r="150"/>
           </svg>
         </div>
-        <div className={styles.start}>&#8592; Active</div>
-    </div>
-    <div className={styles.container} style={{ textAlign: 'center' }}>
-      <button onClick={() => prevClickHandler(itemStepRef.current)} className={styles.prev}>Prev</button>
-      <button onClick={() => nextClickHandler(-itemStepRef.current)} className={styles.next}>Next</button>
-    </div>
+        <div className={styles.start}>{activeTitle}</div>
+      </div>
+      <div className={styles.container} style={{ textAlign: 'center' }}>
+        <div>0{activeItem + 1}/0{data.length}</div>
+        <button
+          onClick={() => prevClickHandler(itemStepRef.current)}
+          disabled={activeItem === 0 ? true : false }
+          className={styles.prev}>
+          Prev
+        </button>
+        <button
+          onClick={() => nextClickHandler(-itemStepRef.current)}
+          disabled={ activeItem + 1 === data.length ? true : false } 
+          className={styles.next}>
+          Next
+        </button>
+      </div>
     </>
   )
 }
