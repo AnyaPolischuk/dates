@@ -3,9 +3,11 @@ import { gsap } from "gsap";
 import MotionPathPlugin from "gsap/MotionPathPlugin";
 
 import { data } from "../../data";
-import styles from './CircularCarousel.module.scss';
 import { Slider } from "../Slider/Slider";
 import { YearsCounter } from "../YearsCounter/YearsCounter";
+import { Buttons } from "../Buttons/Buttons";
+import styles from './CircularCarousel.module.scss';
+
 
 export const CircularCarousel = () => {
   const [activeItem, setActiveItem] = useState<number>(0);
@@ -148,7 +150,8 @@ export const CircularCarousel = () => {
   }
   
   return (
-    <>
+    <div className={styles.carousel}>
+      <div className={styles.start}>{activeTitle}</div>
       <div className={styles.container}>
         <div className={`${styles.wrapper} wrapper`}>
           {data.map((item, index) => 
@@ -160,31 +163,23 @@ export const CircularCarousel = () => {
               {item.id}
             </div>
           )}
-          <svg ref={svgRef} viewBox="0 0 300 300">
-            <circle id='holder' className={styles.st0} cx="151" cy="151" r="150"/>
+          <svg ref={svgRef} viewBox="0 0 500 500">
+            <circle id='holder' className={styles.st0} cx="250" cy="250" r="250"/>
           </svg>
-        </div>
-        <div className={styles.start}>{activeTitle}</div>
+        </div>  
       </div>
-      <div className={styles.container} style={{ textAlign: 'center' }}>
-        <div>0{activeItem + 1}/0{data.length}</div>
-        <button
-          onClick={() => prevClickHandler(itemStepRef.current)}
-          disabled={activeItem === 0 ? true : false }
-          className={styles.prev}>
-          Prev
-        </button>
-        <button
-          onClick={() => nextClickHandler(-itemStepRef.current)}
-          disabled={ activeItem + 1 === data.length ? true : false } 
-          className={styles.next}>
-          Next
-        </button>
+      
+      <YearsCounter prevItem={prevItem} activeItem={activeItem}/>
+      <div className={styles.buttonsWrapper}>
+        <div className={styles.counter}>0{activeItem + 1}/0{data.length}</div>
+        <Buttons
+          prevClickHandler={prevClickHandler}
+          nextClickHandler={nextClickHandler}
+          itemStepRef={itemStepRef}
+          activeItem={activeItem}
+         />
       </div>
       <Slider activeItem={activeItem} />
-      <YearsCounter prevItem={prevItem} activeItem={activeItem}/>
-
-      
-    </>
+    </div>
   )
 }

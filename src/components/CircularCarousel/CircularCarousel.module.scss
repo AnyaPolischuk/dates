@@ -1,19 +1,26 @@
-* {
-  margin: 0;
-  padding: 0;
-}
+$light-gray: hsla(219, 30%, 37%, 10%);
 
-body {
-  background: #fff;
-  margin: 0;
-  padding: 0;
+.carousel {
   position: relative;
+  top: 30%;
 }
 
 .container {
   position: relative;
   max-width: 500px;
-  margin: auto;    
+  margin: auto;
+  top: 31%;
+  rotate: -52deg;
+}
+
+.buttonsWrapper {
+  max-width: 500px;
+    margin: 0 78px;
+}
+
+.counter {
+  text-align: left;
+  margin-left: 12px;
 }
 
 .wrapper {
@@ -21,25 +28,43 @@ body {
 }
 
 .item {
-  width: 50px;
-  height: 50px;
-  color: white;
+  width: 56px;
+  height: 56px;
+  color: transparent;
   text-align: center;
   line-height: 50px;
   font-size: 24px;
   font-family: "Roboto", sans-serif;
   border-radius: 100%;
-  background-color: red;
   z-index: 1;
   cursor: pointer;
+  rotate: 52deg;
+  border: 1px solid transparent;
+  &:hover {
+    border: 1px solid rgba(48, 62, 88, 0.5);
+    background-color: #E5E5E5;
+    transition: 1s all linear;
+    color: rgba(48, 62, 88, 0.5);
+  }
+  
+  &::after{
+    content: "⬤";
+    font-size: 9px;
+    position: absolute;
+    color: #42567A;
+    top: 4px;
+    left: 27px;
+  }
 }
 
-
+.item:hover:after {
+    color: transparent;
+}
 
 svg {
-  height: 300px;
+  height: 500px;
   overflow: visible;
-  width: 300px;
+  width: 500px;
   z-index: -1;
   position: absolute;
   top: 50%;
@@ -49,19 +74,32 @@ svg {
 
 .st0 { 
   fill: none;
-  stroke:#000000;
-  stroke-width: 2;
+  stroke: $light-gray;
+  stroke-width: 1;
   stroke-miterlimit:1;
 }
 
 .start {
   position: absolute;
-  top: 50%;
-  right: -30px;
+  top: -12%;
+  right: 32%;
+  color: #42567A;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-
 .active {
-  background-color: blue;
-  font-weight: bold;
+  border: 1px solid rgba(48, 62, 88, 0.5);
+  background-color: #E5E5E5;
+  width: 50px;
+  height: 50px;
+  color: rgba(48, 62, 88, 0.5);
+  text-align: center;
+  line-height: 50px;
+  font-size: 24px;
+  font-family: "Roboto", sans-serif;
+  border-radius: 100%;
+  z-index: 1;
+  cursor: pointer;
+  rotate: 52deg;
 }
