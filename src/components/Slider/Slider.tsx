@@ -12,7 +12,6 @@ type SliderProps = {
 }
 
 export const Slider = ({ activeItem }: SliderProps) => {
-
   return (
     <div className={styles.container}>
       <Swiper
@@ -24,15 +23,15 @@ export const Slider = ({ activeItem }: SliderProps) => {
         }}
         breakpoints={{
           640: {
-            slidesPerView: 2,
+            slidesPerView: 1,
             spaceBetween: 20,
           },
           768: {
-            slidesPerView: 4,
+            slidesPerView: 2,
             spaceBetween: 40,
           },
           1024: {
-            slidesPerView: 5,
+            slidesPerView: 3,
             spaceBetween: 50,
           },
         }}
@@ -41,8 +40,10 @@ export const Slider = ({ activeItem }: SliderProps) => {
       >
         {data[activeItem].info.map(item => 
           <SwiperSlide>
-            <h3>{item.year}</h3>
-            <p>{item.text}</p>
+            <div className={styles.info}>
+              <h3>{item.year}</h3>
+              <p className={styles.text}>{item.text}</p>
+            </div>
           </SwiperSlide>
           )}
       </Swiper>
