@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
+
 import { data } from "../../data";
+import styles from './YearsCounter.module.scss';
 
 type YearsCounterProps = {
   prevItem: number,
@@ -51,7 +53,12 @@ export const YearsCounter = ({ prevItem, activeItem }: YearsCounterProps) => {
     }
   }, [activeYear, activeItemActiveYear]);
 
-  return <h1>{prevYear} ----- {activeYear}</h1>;
+  return (
+    <div className={styles.container}>
+      <h2 className={styles.prevYear}>{prevYear}</h2>
+      <h2 className={styles.activeYear}>{activeYear}</h2>
+    </div>
+  );
 };
 
 

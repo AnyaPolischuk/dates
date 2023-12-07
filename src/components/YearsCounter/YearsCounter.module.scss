@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  width: 973px;
+  justify-content: space-between;
+  position: absolute;
+  bottom: 55%;
+  left: 22%;
+  z-index: -1;
+}
+
+.prevYear,
+.activeYear {
+  font-size: 200px;
+  font-weight: bold;
+  margin: 0;
+}
+
+.prevYear {
+  color: #5D5FEF;
+}
+
+.activeYear {
+  color: #EF5DA8;
+}
