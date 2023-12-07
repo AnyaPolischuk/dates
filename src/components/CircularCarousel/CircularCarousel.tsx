@@ -4,9 +4,12 @@ import MotionPathPlugin from "gsap/MotionPathPlugin";
 
 import { data } from "../../data";
 import styles from './CircularCarousel.module.scss';
+import { Slider } from "../Slider/Slider";
+import { YearsCounter } from "../YearsCounter/YearsCounter";
 
 export const CircularCarousel = () => {
   const [activeItem, setActiveItem] = useState<number>(0);
+  const [prevItem, setPrevItem] = useState<number>(0);
   const [activeTitle, setActiveTitle] = useState<string>(data[0].title);
   const activeElementRef = useRef<number>(0);
 
@@ -19,7 +22,7 @@ export const CircularCarousel = () => {
   const wrapTrackerRef = useRef(gsap.utils.wrap(0, 0));
   const wrapProgressRef = useRef(gsap.utils.wrap(0, 0));
   const snapRef = useRef(gsap.utils.snap(0));
-  
+
   useLayoutEffect(() => {
     gsap.registerPlugin(MotionPathPlugin);
 
@@ -87,6 +90,7 @@ export const CircularCarousel = () => {
 
     setActiveItem(activeElementRef.current);
     setActiveTitle(data[activeElementRef.current].title);
+    setPrevItem(current);
 
     if (Math.abs(diff) < itemsLengthRef.current / 2) {
         moveWheel(diff * itemStepRef.current);
@@ -119,8 +123,10 @@ export const CircularCarousel = () => {
     moveWheel(amount);
     
     if (activeElementRef.current === itemsLengthRef.current - 1) {
+      setPrevItem(activeElementRef.current - 1);
       activeElementRef.current = 0;
     } else {
+      setPrevItem(activeElementRef.current);
       activeElementRef.current += 1;
     }
     setActiveItem(activeElementRef.current);
@@ -131,8 +137,10 @@ export const CircularCarousel = () => {
     moveWheel(amount);
 
     if (activeElementRef.current === 0) {
+      setPrevItem(activeElementRef.current + 1);
       activeElementRef.current = itemsLengthRef.current - 1;
     } else {
+      setPrevItem(activeElementRef.current);
       activeElementRef.current -= 1;
     }
     setActiveItem(activeElementRef.current);
@@ -173,6 +181,10 @@ export const CircularCarousel = () => {
           Next
         </button>
       </div>
+      <Slider activeItem={activeItem} />
+      <YearsCounter prevItem={prevItem} activeItem={activeItem}/>
+
+      
     </>
   )
 }
