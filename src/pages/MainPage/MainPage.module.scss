@@ -1,0 +1,51 @@
+$light-gray: hsla(219, 30%, 37%, 10%);
+$black-blue: rgba(66, 86, 122, 1);
+
+.container {
+  width: 90%;
+  height: 90vh;
+  margin: 0 auto;
+  border: 1px solid $light-gray;
+  position: relative;
+}
+
+.lineVertical {
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background-color: $light-gray;
+  left: 50%;
+  top: 0;
+}
+
+.lineGorizontal {
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background-color: $light-gray;
+  left: 0;
+  top: 50%;
+}
+
+.titleLine {
+  position: absolute;
+  width: 5px;
+  height: 120px;
+  background: -webkit-linear-gradient(0deg, rgb(239, 93, 168) 35%, rgb(56, 119, 238) 89%);
+  background: -moz-linear-gradient(0deg, rgb(239, 93, 168) 35%, rgb(56, 119, 238) 89%);
+  background: linear-gradient(0deg, rgb(239, 93, 168) 35%, rgb(56, 119, 238) 89%);
+  left: 0px;
+  top: 20%;
+}
+
+.title {
+  position: absolute;
+  width: 353px;
+  height: 170px;
+  color: $black-blue;
+  font-size: 56px;
+  line-height: 67px;
+  left: 78px;
+  top: 20%;
+  margin-top: 0;
+}
