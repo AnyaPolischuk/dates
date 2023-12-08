@@ -1,6 +1,8 @@
 .container {
-  width: 90%;
-  margin-left: 78px;
+  display: flex;
+  align-items: center;
+  width: 95%;
+  margin: 0 auto;
 }
 
 .swiper {
@@ -26,8 +28,8 @@
 }
 
 .info {
-  width: 350px;
-  margin-left: 60px;
+  width: 330px;
+  margin-left: 20px;
   margin-bottom: 30px;
 }
 
@@ -39,4 +41,19 @@ h3 {
 .text {
   color: #42567A;
   font-size: 20px;
+}
+
+.nextBtn,
+.prevBtn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: white;
+  color: #3877EE;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  -webkit-box-shadow: 1px 2px 40px 4px rgba(56, 119, 238, 0.25);
+  -moz-box-shadow: 1px 2px 40px 4px rgba(56, 119, 238, 0.25);
+  box-shadow: 1px 2px 40px 4px rgba(56, 119, 238, 0.25);
 }

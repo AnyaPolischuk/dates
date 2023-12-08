@@ -1,19 +1,25 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Navigation } from 'swiper/modules';
+import { Swiper as SwiperType} from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
-import 'swiper/css/navigation';
 
 import { data } from "../../data";
 import styles from './Slider.module.scss';
+import { useRef } from "react";
 
 type SliderProps = {
   activeItem: number;
 }
 
 export const Slider = ({ activeItem }: SliderProps) => {
+  const swiperRef = useRef<SwiperType>();
+
   return (
     <div className={styles.container}>
+      <div>
+        <button className={styles.prevBtn} onClick={() => swiperRef.current?.slidePrev()}>{`<`}</button>
+      </div>
       <Swiper
         slidesPerView={1}
         spaceBetween={10}
@@ -36,6 +42,10 @@ export const Slider = ({ activeItem }: SliderProps) => {
           },
         }}
         modules={[Pagination, Navigation]}
+        //@ts-ignore
+        onBeforeInit={(swiper) => {
+          swiperRef.current = swiper;
+        }}
         className="mySwiper"
       >
         {data[activeItem].info.map(item => 
@@ -47,6 +57,9 @@ export const Slider = ({ activeItem }: SliderProps) => {
           </SwiperSlide>
           )}
       </Swiper>
+      <div>
+        <button className={styles.nextBtn} onClick={() => swiperRef.current?.slideNext()}>{`>`}</button>
+      </div>
     </div>
   )
 }
