@@ -1,4 +1,4 @@
-$light-gray: hsla(219, 30%, 37%, 10%);
+@import '../../styles/_colors.scss';
 
 .carousel {
   position: relative;
@@ -11,16 +11,26 @@ $light-gray: hsla(219, 30%, 37%, 10%);
   margin: auto;
   top: 31%;
   rotate: -52deg;
+  @media (max-width: 800px) {
+    display: none;
+  }
 }
 
 .buttonsWrapper {
   max-width: 500px;
-    margin: 0 78px;
+  margin: 0 78px;
+  @media (max-width: 800px) {
+    margin: 0;
+    padding-top: calc(321px + (360 - 321) * ((100vw - 320px) / (800 - 320)));
+  }
 }
 
 .counter {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 400;
   text-align: left;
   margin-left: 12px;
+  font-size: 14px;
 }
 
 .wrapper {
@@ -28,30 +38,31 @@ $light-gray: hsla(219, 30%, 37%, 10%);
 }
 
 .item {
+  font-family: 'PT Sans', sans-serif;
   width: 56px;
   height: 56px;
   color: transparent;
   text-align: center;
   line-height: 50px;
-  font-size: 24px;
-  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+  font-weight: 700;
   border-radius: 100%;
   z-index: 1;
   cursor: pointer;
   rotate: 52deg;
   border: 1px solid transparent;
   &:hover {
-    border: 1px solid rgba(48, 62, 88, 0.5);
-    background-color: #E5E5E5;
+    border: 1px solid $dark-gray;
+    background-color: $background-white;
     transition: 1s all linear;
-    color: rgba(48, 62, 88, 0.5);
+    color: $dark-gray;
   }
   
   &::after{
-    content: "⬤";
+    content: '⬤';
     font-size: 9px;
     position: absolute;
-    color: #42567A;
+    color: $black-blue;
     top: 4px;
     left: 27px;
   }
@@ -80,24 +91,30 @@ svg {
 }
 
 .start {
+  font-family: 'PT Sans', sans-serif;
   position: absolute;
   top: -12%;
-  right: 32%;
-  color: #42567A;
+  right: calc(108px + (414 - 108) * ((100vw - 800px) / (1440 - 800)));
+  color: $black-blue;
   font-size: 20px;
-  font-weight: bold;
+  font-weight: 700;
+  @media (max-width: 800px) {
+    top: 26%;
+    right: 0;
+    left: 20px;
+  }
 }
 
 .active {
-  border: 1px solid rgba(48, 62, 88, 0.5);
+  border: 1px solid $dark-gray;
   background-color: #E5E5E5;
   width: 50px;
   height: 50px;
-  color: rgba(48, 62, 88, 0.5);
+  color: $dark-gray;
   text-align: center;
   line-height: 50px;
   font-size: 24px;
-  font-family: "Roboto", sans-serif;
+  font-family: 'PT Sans', sans-serif;
   border-radius: 100%;
   z-index: 1;
   cursor: pointer;

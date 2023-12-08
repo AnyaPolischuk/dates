@@ -1,20 +1,25 @@
+@import '../../styles/_colors.scss';
+
 .container {
   display: flex;
   align-items: center;
   width: 95%;
   margin: 0 auto;
+  @media (max-width: 800px) {
+    margin-top: -240px;
+  }
 }
 
 .swiper {
   width: 20%;
   height: 30%;
-  color: black;
+  color: $light-gray;
 }
 
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: red;
+  background: $light-gray;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,16 +36,32 @@
   width: 330px;
   margin-left: 20px;
   margin-bottom: 30px;
+  @media (max-width: 800px) {
+    margin-left: 0;
+  }
+  @media (max-width: 400px) {
+    width: 280px;
+  }
 }
 
 h3 {
-  color: #3877EE;
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  color: $blue;
   font-size: 25px;
+  @media (max-width: 400px) {
+    font-size: 20px;
+  }
 }
 
 .text {
-  color: #42567A;
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 400;
+  color: $black-blue;
   font-size: 20px;
+  @media (max-width: 400px) {
+    font-size: 14px;
+  }
 }
 
 .nextBtn,
@@ -48,12 +69,15 @@ h3 {
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: white;
-  color: #3877EE;
+  background-color: $white;
+  color: $blue;
   border: none;
   font-weight: bold;
   cursor: pointer;
-  -webkit-box-shadow: 1px 2px 40px 4px rgba(56, 119, 238, 0.25);
-  -moz-box-shadow: 1px 2px 40px 4px rgba(56, 119, 238, 0.25);
-  box-shadow: 1px 2px 40px 4px rgba(56, 119, 238, 0.25);
+  -webkit-box-shadow: 1px 2px 40px 4px $shadow-blue;
+  -moz-box-shadow: 1px 2px 40px 4px $shadow-blue;
+  box-shadow: 1px 2px 40px 4px $shadow-blue;
+  @media (max-width: 800px) {
+    display: none;
+  }
 }
