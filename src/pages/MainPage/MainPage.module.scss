@@ -1,0 +1,77 @@
+@import '../../styles/_colors.scss';
+
+.container {
+  width: 90%;
+  height: 100vh;
+  margin: 0 auto;
+  border-right: 1px solid $light-gray;
+  border-left: 1px solid $light-gray;
+  position: relative;
+}
+
+.lineVertical {
+  position: absolute;
+  height: 100%;
+  width: 1px;
+  background-color: $light-gray;
+  left: 50%;
+  top: 0;
+  @media (max-width: 800px) {
+    display: none;
+  }
+}
+
+.lineGorizontal {
+  position: absolute;
+  height: 1px;
+  width: 100%;
+  background-color: $light-gray;
+  left: 0;
+  top: 50%;
+  @media (max-width: 800px) {
+    width: 93%;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+  }
+}
+
+.titleLine {
+  position: absolute;
+  width: 5px;
+  height: 120px;
+  background: -webkit-linear-gradient(0deg, $pink 35%, $blue 89%);
+  background: -moz-linear-gradient(0deg, $pink 35%, $blue 89%);
+  background: linear-gradient(0deg, $pink 35%, $blue 89%);
+  left: 0px;
+  top: 20%;
+  @media (max-width: 1200px) {
+    top: 8%;
+  }
+  @media (max-width: 800px) {
+    display: none;
+  }
+}
+
+.title {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 700;
+  position: absolute;
+  max-width: 353px;
+  height: 170px;
+  color: $black-blue;
+  font-size: calc(20px + (56 - 20) * ((100vw - 320px) / (1440 - 320)));
+  line-height: 67px;
+  left: 78px;
+  top: 20%;
+  margin-top: 0;
+  @media (max-width: 1200px) {
+    top: 8%;
+  }
+  @media (max-width: 800px) {
+    left: 20px;
+    width: 123px;
+    line-height: 1;
+    height: 48px;
+  }
+}

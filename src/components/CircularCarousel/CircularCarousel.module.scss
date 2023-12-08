@@ -1,0 +1,122 @@
+@import '../../styles/_colors.scss';
+
+.carousel {
+  position: relative;
+  top: 30%;
+}
+
+.container {
+  position: relative;
+  max-width: 500px;
+  margin: auto;
+  top: 31%;
+  rotate: -52deg;
+  @media (max-width: 800px) {
+    display: none;
+  }
+}
+
+.buttonsWrapper {
+  max-width: 500px;
+  margin: 0 78px;
+  @media (max-width: 800px) {
+    margin: 0;
+    padding-top: calc(321px + (360 - 321) * ((100vw - 320px) / (800 - 320)));
+  }
+}
+
+.counter {
+  font-family: 'PT Sans', sans-serif;
+  font-weight: 400;
+  text-align: left;
+  margin-left: 12px;
+  font-size: 14px;
+}
+
+.wrapper {
+  position: relative;
+}
+
+.item {
+  font-family: 'PT Sans', sans-serif;
+  width: 56px;
+  height: 56px;
+  color: transparent;
+  text-align: center;
+  line-height: 50px;
+  font-size: 20px;
+  font-weight: 700;
+  border-radius: 100%;
+  z-index: 1;
+  cursor: pointer;
+  rotate: 52deg;
+  border: 1px solid transparent;
+  &:hover {
+    border: 1px solid $dark-gray;
+    background-color: $background-white;
+    transition: 1s all linear;
+    color: $dark-gray;
+  }
+  
+  &::after{
+    content: '⬤';
+    font-size: 9px;
+    position: absolute;
+    color: $black-blue;
+    top: 4px;
+    left: 27px;
+  }
+}
+
+.item:hover:after {
+    color: transparent;
+}
+
+svg {
+  height: 500px;
+  overflow: visible;
+  width: 500px;
+  z-index: -1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+
+.st0 { 
+  fill: none;
+  stroke: $light-gray;
+  stroke-width: 1;
+  stroke-miterlimit:1;
+}
+
+.start {
+  font-family: 'PT Sans', sans-serif;
+  position: absolute;
+  top: -12%;
+  right: calc(108px + (414 - 108) * ((100vw - 800px) / (1440 - 800)));
+  color: $black-blue;
+  font-size: 20px;
+  font-weight: 700;
+  @media (max-width: 800px) {
+    top: 26%;
+    right: 0;
+    left: 20px;
+  }
+}
+
+.active {
+  border: 1px solid $dark-gray;
+  background-color: #E5E5E5;
+  width: 50px;
+  height: 50px;
+  color: $dark-gray;
+  text-align: center;
+  line-height: 50px;
+  font-size: 24px;
+  font-family: 'PT Sans', sans-serif;
+  border-radius: 100%;
+  z-index: 1;
+  cursor: pointer;
+  rotate: 52deg;
+}
