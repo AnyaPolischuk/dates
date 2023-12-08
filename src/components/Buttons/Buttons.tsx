@@ -8,7 +8,7 @@ type ButtonsProps = {
   activeItem: number
 }
 
-export const Buttons = ({ prevClickHandler, nextClickHandler, itemStepRef, activeItem }: ButtonsProps) => {
+export const Buttons: React.FC<ButtonsProps> = ({ prevClickHandler, nextClickHandler, itemStepRef, activeItem }) => {
   return (
     <div>
       <button

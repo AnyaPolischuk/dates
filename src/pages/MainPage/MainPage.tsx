@@ -1,7 +1,7 @@
 import { CircularCarousel } from '../../components/CircularCarousel/CircularCarousel';
 import styles from './MainPage.module.scss';
 
-export const MainPage = () => {
+export const MainPage: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.lineVertical}></div>

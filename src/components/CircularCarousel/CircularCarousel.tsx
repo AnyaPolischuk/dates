@@ -1,21 +1,21 @@
-import { useLayoutEffect, useRef, useState } from "react";
-import { gsap } from "gsap";
-import MotionPathPlugin from "gsap/MotionPathPlugin";
+import { useLayoutEffect, useRef, useState } from 'react';
+import { gsap } from 'gsap';
+import MotionPathPlugin from 'gsap/MotionPathPlugin';
 
-import { data } from "../../data";
-import { Slider } from "../Slider/Slider";
-import { YearsCounter } from "../YearsCounter/YearsCounter";
-import { Buttons } from "../Buttons/Buttons";
+import { data } from '../../data';
+import { Slider } from '../Slider/Slider';
+import { YearsCounter } from '../YearsCounter/YearsCounter';
+import { Buttons } from '../Buttons/Buttons';
 import styles from './CircularCarousel.module.scss';
 
 
-export const CircularCarousel = () => {
+export const CircularCarousel: React.FC = () => {
   const [activeItem, setActiveItem] = useState<number>(0);
   const [prevItem, setPrevItem] = useState<number>(0);
   const [activeTitle, setActiveTitle] = useState<string>(data[0].title);
-  const activeElementRef = useRef<number>(0);
 
-  const svgRef = useRef<SVGSVGElement>(null);
+  const activeElementRef = useRef<number>(0);
+  const svgRef = useRef<null | SVGSVGElement>(null);
   const allItemsRef = useRef<null | HTMLDivElement[]>(null);
   const itemsLengthRef = useRef<number>(0);
   const itemStepRef = useRef<number>(0);
@@ -28,14 +28,14 @@ export const CircularCarousel = () => {
   useLayoutEffect(() => {
     gsap.registerPlugin(MotionPathPlugin);
 
-    const circlePath = MotionPathPlugin.convertToPath("#holder", false)[0];
-    circlePath.id = "circlePath";
+    const circlePath = MotionPathPlugin.convertToPath('#holder', false)[0];
+    circlePath.id = 'circlePath';
 
     if (svgRef.current) {
       svgRef.current.prepend(circlePath);
     }
 
-    allItemsRef.current = gsap.utils.toArray(".elem");
+    allItemsRef.current = gsap.utils.toArray('.elem');
     itemsLengthRef.current = allItemsRef.current.length;
     itemStepRef.current = 1 / itemsLengthRef.current;
     wrapProgressRef.current = gsap.utils.wrap(0, 1);
@@ -62,7 +62,7 @@ export const CircularCarousel = () => {
     });
 
     tlRef.current.to(allItemsRef.current, {
-      rotation: "-=360", 
+      rotation: '-=360', 
       transformOrigin: 'center', 
       duration: 1, 
       ease: 'none',
@@ -80,7 +80,7 @@ export const CircularCarousel = () => {
     }, 0);
   }, [])
 
-  function itemClickHandler(index: number) {
+  function itemClickHandler(index: number): void {
     let current = trackerRef.current!.item;
     activeElementRef.current = index;
 
@@ -107,7 +107,7 @@ export const CircularCarousel = () => {
       }
     }}
 
-  function moveWheel(amount: number) {
+  function moveWheel(amount: number): void {
     let progress = tlRef.current.progress();
     
     tlRef.current.progress(wrapProgressRef.current(snapRef.current(progress + amount)))
@@ -131,6 +131,7 @@ export const CircularCarousel = () => {
       setPrevItem(activeElementRef.current);
       activeElementRef.current += 1;
     }
+
     setActiveItem(activeElementRef.current);
     setActiveTitle(data[activeElementRef.current].title);
   }
@@ -145,6 +146,7 @@ export const CircularCarousel = () => {
       setPrevItem(activeElementRef.current);
       activeElementRef.current -= 1;
     }
+
     setActiveItem(activeElementRef.current);
     setActiveTitle(data[activeElementRef.current].title);
   }
@@ -163,12 +165,11 @@ export const CircularCarousel = () => {
               {item.id}
             </div>
           )}
-          <svg ref={svgRef} viewBox="0 0 500 500">
-            <circle id='holder' className={styles.st0} cx="250" cy="250" r="250"/>
+          <svg ref={svgRef} viewBox='0 0 500 500'>
+            <circle id='holder' className={styles.st0} cx='250' cy='250' r='250'/>
           </svg>
         </div>  
       </div>
-      
       <YearsCounter prevItem={prevItem} activeItem={activeItem}/>
       <div className={styles.buttonsWrapper}>
         <div className={styles.counter}>0{activeItem + 1}/0{data.length}</div>

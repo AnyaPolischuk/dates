@@ -1,18 +1,18 @@
-import { Swiper, SwiperSlide } from "swiper/react";
+import { useRef } from 'react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper/modules';
 import { Swiper as SwiperType} from 'swiper';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import { data } from "../../data";
+import { data } from '../../data';
 import styles from './Slider.module.scss';
-import { useRef } from "react";
 
 type SliderProps = {
   activeItem: number;
 }
 
-export const Slider = ({ activeItem }: SliderProps) => {
+export const Slider: React.FC<SliderProps> = ({ activeItem }) => {
   const swiperRef = useRef<SwiperType>();
 
   return (
@@ -46,7 +46,7 @@ export const Slider = ({ activeItem }: SliderProps) => {
         onBeforeInit={(swiper) => {
           swiperRef.current = swiper;
         }}
-        className="mySwiper"
+        className='mySwiper'
       >
         {data[activeItem].info.map(item => 
           <SwiperSlide>

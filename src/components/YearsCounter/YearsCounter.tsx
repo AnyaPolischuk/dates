@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
-import { data } from "../../data";
+import { data } from '../../data';
 import styles from './YearsCounter.module.scss';
 
 type YearsCounterProps = {
@@ -8,14 +8,14 @@ type YearsCounterProps = {
   activeItem: number
 }
 
-export const YearsCounter = ({ prevItem, activeItem }: YearsCounterProps) => {
+export const YearsCounter: React.FC<YearsCounterProps> = ({ prevItem, activeItem }) => {
   const prevItemPrevYear = data[prevItem].startYear;
   const prevItemActiveYear = data[prevItem].endYear;
   const activeItemActiveYear = data[activeItem].endYear;
   const activeItemPrevYear = data[activeItem].startYear;
 
-  const [prevYear, setPrevYear] = useState(prevItemPrevYear);
-  const [activeYear, setActiveYear] = useState(prevItemActiveYear);
+  const [prevYear, setPrevYear] = useState<number>(prevItemPrevYear);
+  const [activeYear, setActiveYear] = useState<number>(prevItemActiveYear);
 
   useEffect(() => {
     if (prevYear < activeItemPrevYear) {
